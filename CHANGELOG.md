@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.1
+
+### Fixes
+
+- render declared provider constraints in docs and skip .terraform in trivy hook
+
 ## 1.0.0
 
 - SES v2 domain identity with Easy DKIM (RSA-2048), custom MAIL FROM with reject on MX failure, TLS-required configuration set and optional SNS event destination.
