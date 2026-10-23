@@ -5,4 +5,9 @@ run "apply_minimal" {
   module {
     source = "./examples/minimal"
   }
+
+  assert {
+    condition     = length(output.dns_records) == 6
+    error_message = "Expected six DNS records."
+  }
 }
