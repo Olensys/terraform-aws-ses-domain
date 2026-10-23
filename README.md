@@ -1,6 +1,6 @@
-# __NAME__
+# terraform-aws-ses-domain
 
-__DESCRIPTION__
+SES domain identity with Easy DKIM, custom MAIL FROM, DMARC guidance, configuration set and event notifications
 
 ## Opinions
 
@@ -10,7 +10,7 @@ __DESCRIPTION__
 
 ```hcl
 module "this" {
-  source = "git::https://github.com/Olensys/__NAME__.git?ref=v1.0.0"
+  source = "git::https://github.com/Olensys/terraform-aws-ses-domain.git?ref=v1.0.0"
 
   name = "example"
   context = {
