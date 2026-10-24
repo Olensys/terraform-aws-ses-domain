@@ -1,7 +1,7 @@
 name: terraform-aws-ses-domain
 cloud: aws          # aws | google | common
 tier: capability          # primitive | capability | blueprint
-maturity: experimental    # experimental | stable | deprecated
+maturity: stable    # experimental | stable | deprecated
 description: SES domain identity with Easy DKIM, custom MAIL FROM, DMARC guidance, configuration set and event notifications
 owners: [platform]
 upstream: null            # e.g. "terraform-aws-modules/s3-bucket/aws 5.17.0"
