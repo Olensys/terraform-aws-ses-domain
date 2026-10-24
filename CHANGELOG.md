@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.3](https://github.com/Olensys/terraform-aws-ses-domain/compare/v1.0.2...v1.0.3) (2026-10-24)
+
+
+### Bug Fixes
+
+* **examples:** unique application slug so concurrent integration runs do not collide ([#2](https://github.com/Olensys/terraform-aws-ses-domain/issues/2)) ([6205083](https://github.com/Olensys/terraform-aws-ses-domain/commit/6205083b92082a799a768828b88f412aa0f4859f))
+
 ## [1.0.2](https://github.com/Olensys/terraform-aws-ses-domain/compare/v1.0.1...v1.0.2) (2026-10-24)
 
 
