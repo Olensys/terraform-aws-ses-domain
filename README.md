@@ -15,18 +15,19 @@ SES domain identity with Easy DKIM, custom MAIL FROM, DMARC guidance, configurat
 ## Usage
 
 ```hcl
-module "this" {
-  source = "git::https://github.com/Olensys/terraform-aws-ses-domain.git?ref=v1.0.0"
+module "naming" {
+  source  = "git::https://github.com/Olensys/terraform-null-naming.git?ref=v1.0.1"
+  context = var.context
+}
 
-  name   = "example"
+module "ses_domain" {
+  source  = "git::https://github.com/Olensys/terraform-aws-ses-domain.git?ref=v1.0.1"
+  name    = module.naming.name
+  context = var.context
+
   domain = "example.com"
-  context = {
-    organization = "olensys"
-    environment  = "dev"
-    application  = "example"
-    owner        = "platform"
-    cost_center  = "eng"
-  }
+
+  tags = module.naming.tags
 }
 ```
 
