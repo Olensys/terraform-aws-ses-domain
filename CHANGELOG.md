@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.2](https://github.com/Olensys/terraform-aws-ses-domain/compare/v1.0.1...v1.0.2) (2026-10-24)
+
+
+### Bug Fixes
+
+* run integration on change and weekly instead of nightly ([c4406cc](https://github.com/Olensys/terraform-aws-ses-domain/commit/c4406cc3d4392c5e9f3fe2f050f31667eba12bb9))
+
 ## 1.0.1
 
 ### Fixes
