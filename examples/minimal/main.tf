@@ -13,12 +13,12 @@ provider "aws" {
 module "this" {
   source = "../../"
 
-  name   = "example"
+  name   = "olensys-test-ses"
   domain = "example.com"
   context = {
     organization = "olensys"
     environment  = "test"
-    application  = "example"
+    application  = "ses"
     owner        = "platform"
     cost_center  = "eng"
   }
