@@ -21,7 +21,7 @@ module "naming" {
 }
 
 module "ses_domain" {
-  source  = "git::https://github.com/Olensys/terraform-aws-ses-domain.git?ref=v1.0.1"
+  source  = "git::https://github.com/Olensys/terraform-aws-ses-domain.git?ref=v1.1.0"
   name    = module.naming.name
   context = var.context
 

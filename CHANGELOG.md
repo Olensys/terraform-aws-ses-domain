@@ -7,6 +7,10 @@
 
 * MX record priority and configurable DMARC report address ([#5](https://github.com/Olensys/terraform-aws-ses-domain/issues/5)) ([a553e10](https://github.com/Olensys/terraform-aws-ses-domain/commit/a553e10c19025b03639d0a84ae96a86c956035c8))
 
+### Behaviour changes
+
+The DMARC record no longer includes `rua=mailto:dmarc@<domain>` by default; set `dmarc_report_address` to keep receiving reports. The MX entry in `dns_records` now carries `priority = 10`, which terraform-cloudflare-dns 1.1.0 or later accepts (older versions silently drop the attribute).
+
 ## [1.0.3](https://github.com/Olensys/terraform-aws-ses-domain/compare/v1.0.2...v1.0.3) (2026-10-24)
 
 
