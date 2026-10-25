@@ -50,8 +50,8 @@ run "test_dmarc_policy_in_txt" {
   }
 
   assert {
-    condition     = output.dns_records["_dmarc.example.com"].content == "v=DMARC1; p=reject; rua=mailto:dmarc@example.com"
-    error_message = "DMARC TXT must carry the configured policy and rua address."
+    condition     = output.dns_records["_dmarc.example.com"].content == "v=DMARC1; p=reject"
+    error_message = "DMARC TXT must carry the configured policy and no rua clause by default."
   }
 
   assert {
@@ -184,4 +184,39 @@ run "test_notification_type_validation" {
   }
 
   expect_failures = [var.notifications]
+}
+
+run "test_mx_record_priority" {
+  command = plan
+  assert {
+    condition     = output.dns_records["mail.example.com"].priority == 10 && output.dns_records["mail.example.com"].type == "MX"
+    error_message = "The MAIL FROM MX record must carry priority 10."
+  }
+  assert {
+    condition     = output.dns_records["_dmarc.example.com"].priority == null
+    error_message = "Non-MX records must not carry a priority."
+  }
+}
+
+run "test_dmarc_rua_when_set" {
+  command = plan
+  variables { dmarc_report_address = "dmarc-reports@example.com" }
+  assert {
+    condition     = output.dns_records["_dmarc.example.com"].content == "v=DMARC1; p=quarantine; rua=mailto:dmarc-reports@example.com"
+    error_message = "rua must be emitted when dmarc_report_address is set."
+  }
+}
+
+run "test_dmarc_without_rua" {
+  command = plan
+  assert {
+    condition     = output.dns_records["_dmarc.example.com"].content == "v=DMARC1; p=quarantine"
+    error_message = "Without dmarc_report_address the record must end at the policy, with no rua clause."
+  }
+}
+
+run "test_dmarc_report_address_validation" {
+  command = plan
+  variables { dmarc_report_address = "not-an-address" }
+  expect_failures = [var.dmarc_report_address]
 }
