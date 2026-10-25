@@ -75,6 +75,16 @@ variable "dmarc_policy" {
   }
 }
 
+variable "dmarc_report_address" {
+  description = "Mailbox that receives DMARC aggregate reports (emitted as rua=mailto:...). Null emits no rua clause, which disables reporting."
+  type        = string
+  default     = null
+  validation {
+    condition     = var.dmarc_report_address == null || can(regex("^[^@[:space:]]+@[^@[:space:]]+\\.[^@[:space:]]+$", var.dmarc_report_address))
+    error_message = "dmarc_report_address must be an email address or null."
+  }
+}
+
 variable "tags" {
   description = "Tags merged onto every taggable resource, applied last."
   type        = map(string)

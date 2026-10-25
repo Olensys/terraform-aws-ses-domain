@@ -27,38 +27,42 @@ locals {
   dns_records = var.create ? merge(
     {
       for token in local.dkim_tokens : "${token}._domainkey.${var.domain}" => {
-        name    = "${token}._domainkey.${var.domain}"
-        type    = "CNAME"
-        content = "${token}.dkim.amazonses.com"
-        ttl     = 300
-        proxied = false
-        comment = "SES Easy DKIM for ${var.domain}"
+        name     = "${token}._domainkey.${var.domain}"
+        type     = "CNAME"
+        content  = "${token}.dkim.amazonses.com"
+        ttl      = 300
+        priority = null
+        proxied  = false
+        comment  = "SES Easy DKIM for ${var.domain}"
       }
     },
     {
       (local.mail_from_domain) = {
-        name    = local.mail_from_domain
-        type    = "MX"
-        content = "feedback-smtp.${local.region}.amazonses.com"
-        ttl     = 300
-        proxied = false
-        comment = "MX priority 10"
+        name     = local.mail_from_domain
+        type     = "MX"
+        content  = "feedback-smtp.${local.region}.amazonses.com"
+        ttl      = 300
+        priority = 10
+        proxied  = false
+        comment  = "SES MAIL FROM MX for ${var.domain}"
       }
       "spf.${local.mail_from_domain}" = {
-        name    = local.mail_from_domain
-        type    = "TXT"
-        content = "v=spf1 include:amazonses.com -all"
-        ttl     = 300
-        proxied = false
-        comment = "SPF for the SES MAIL FROM domain"
+        name     = local.mail_from_domain
+        type     = "TXT"
+        content  = "v=spf1 include:amazonses.com -all"
+        ttl      = 300
+        priority = null
+        proxied  = false
+        comment  = "SPF for the SES MAIL FROM domain"
       }
       "_dmarc.${var.domain}" = {
-        name    = "_dmarc.${var.domain}"
-        type    = "TXT"
-        content = "v=DMARC1; p=${var.dmarc_policy}; rua=mailto:dmarc@${var.domain}"
-        ttl     = 300
-        proxied = false
-        comment = "DMARC policy for ${var.domain}"
+        name     = "_dmarc.${var.domain}"
+        type     = "TXT"
+        content  = "v=DMARC1; p=${var.dmarc_policy}${var.dmarc_report_address == null ? "" : "; rua=mailto:${var.dmarc_report_address}"}"
+        ttl      = 300
+        priority = null
+        proxied  = false
+        comment  = "DMARC policy for ${var.domain}"
       }
     }
   ) : null

@@ -19,7 +19,7 @@ output "arn" {
 }
 
 output "dns_records" {
-  description = "DNS records to publish, keyed by record name, in the record shape consumed by terraform-cloudflare-dns (name, type, content, ttl, proxied, comment): three DKIM CNAMEs, the MAIL FROM MX (priority 10 carried in the comment, not in content) and SPF TXT, and the DMARC TXT. The SPF entry key is prefixed spf. so it does not collide with the MX key; its name field is the MAIL FROM domain. Known only after apply. Null when create is false."
+  description = "DNS records to publish, keyed by record name, in the record shape consumed by terraform-cloudflare-dns (name, type, content, ttl, priority, proxied, comment): three DKIM CNAMEs, the MAIL FROM MX (priority 10; priority is null on every other record) and SPF TXT, and the DMARC TXT. The SPF entry key is prefixed spf. so it does not collide with the MX key; its name field is the MAIL FROM domain. Known only after apply. Null when create is false."
   value       = local.dns_records
 }
 
