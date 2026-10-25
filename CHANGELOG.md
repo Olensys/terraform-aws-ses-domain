@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.0](https://github.com/Olensys/terraform-aws-ses-domain/compare/v1.0.3...v1.1.0) (2026-10-25)
+
+
+### Features
+
+* MX record priority and configurable DMARC report address ([#5](https://github.com/Olensys/terraform-aws-ses-domain/issues/5)) ([a553e10](https://github.com/Olensys/terraform-aws-ses-domain/commit/a553e10c19025b03639d0a84ae96a86c956035c8))
+
 ## [1.0.3](https://github.com/Olensys/terraform-aws-ses-domain/compare/v1.0.2...v1.0.3) (2026-10-24)
 
 
