@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.1](https://github.com/Olensys/terraform-aws-ses-domain/compare/v1.1.0...v1.1.1) (2026-11-14)
+
+
+### Bug Fixes
+
+* tag the minimal example's resources through the naming module ([#8](https://github.com/Olensys/terraform-aws-ses-domain/issues/8)) ([7a2b198](https://github.com/Olensys/terraform-aws-ses-domain/commit/7a2b198af50dc0648c2f111c3ebdb63abbdd8016))
+
 ## [1.1.0](https://github.com/Olensys/terraform-aws-ses-domain/compare/v1.0.3...v1.1.0) (2026-10-25)
 
 
